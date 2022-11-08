@@ -3,7 +3,8 @@ import os
 import imageio.v3 as iio
 from align import align
 
-if __name__ == "__main__":
+
+def main():
     parser = argparse.ArgumentParser(
         description="Align and resize DSLR capture to match lab-scanned image")
     parser.add_argument("--reference",
@@ -67,3 +68,7 @@ if __name__ == "__main__":
     iio.imwrite(args.output, aligned)
     if args.trimmed != "":
         iio.imwrite(args.trimmed, trimmed)
+
+
+if __name__ == "__main__":
+    main()
