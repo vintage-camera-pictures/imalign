@@ -1,8 +1,7 @@
 import numpy as np
-import cv2
 from imalign.align import align
 from util import generate_samples
-import matplotlib.pyplot as plt
+
 
 WIDTH = 100
 HEIGHT = 80
@@ -25,6 +24,8 @@ def test_random_image():
     aligned, cropped = align(reference=reference,
                              source=source,
                              border=BORDER)
+
+    assert aligned.shape == cropped.shape
 
     offset = int(BORDER * max(WIDTH, HEIGHT))
     diff = aligned[ih - offset, iw - offset, :] - cropped[ih - offset, iw - offset, :]
