@@ -1,7 +1,7 @@
 import argparse
 import os
 import imageio.v3 as iio
-from align import align
+from imalign.align import align
 
 
 def main():

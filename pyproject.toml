@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "imalign"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Roman", email="roman@vintage-camera.pictures" },
 ]
@@ -28,4 +28,4 @@ dependencies = [
 "Bug Tracker" = "https://github.com/vintage-camera-pictures/imalign/issues"
 
 [project.scripts]
-imalign = "imalign.imalign:main"
+imalign = "imalign.main:main"
