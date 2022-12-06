@@ -2,6 +2,21 @@ import cv2
 import numpy as np
 
 
+def to_uint8(im):
+    if im.dtype == np.uint8:
+        return im
+
+    if im.dtype == np.uint16:
+        scaled = im / 257
+        return scaled.astype(np.uint8)
+
+    if im.dtype == float:
+        scaled = 255 * im
+        return scaled.astype(np.uint8)
+
+    raise RuntimeError(f"Unsupported data type {im.dtype}")
+
+
 def align(reference,
           source,
           border=0.0,
@@ -16,15 +31,11 @@ def align(reference,
     else:
         src_mono = source
 
+    ref_mono = to_uint8(ref_mono)
+    src_mono = to_uint8(src_mono)
+
     if invert_source:
-        if src_mono.dtype == np.uint8:
-            src_mono = 255 - src_mono
-        elif src_mono.dtype == np.uint16:
-            src_mono = 2 ** 16 - 1 - src_mono
-        elif src_mono.dtype == float:
-            src_mono = 1.0 - src_mono
-        else:
-            raise RuntimeError(f"Unsupported data type {src_mono.dtype}")
+        src_mono = 255 - src_mono
 
     sift = cv2.SIFT_create()
     kp1, des1 = sift.detectAndCompute(ref_mono, None)
