@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "imalign"
-version = "0.0.4"
+version = "0.0.5"
 authors = [
   { name="Roman", email="roman@vintage-camera.pictures" },
 ]
@@ -19,8 +19,7 @@ classifiers = [
 keywords = ["image align"]
 dependencies = [
     "numpy>=1.23.4",
-    "opencv-contrib-python-headless>=4.6.0.66",
-    "imageio>=2.22.4"
+    "opencv-contrib-python-headless>=4.6.0.66"
 ]
 
 [project.urls]

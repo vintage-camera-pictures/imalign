@@ -1,6 +1,6 @@
 import argparse
 import os
-import imageio.v3 as iio
+import cv2
 from imalign.align import align
 
 
@@ -48,8 +48,11 @@ def main():
         print(f'Unable to find source image file "{args.source}"')
         exit(2)
 
-    ref = iio.imread(args.reference)
-    src = iio.imread(args.source)
+    ref = cv2.imread(args.reference, cv2.IMREAD_ANYCOLOR)
+    ref = cv2.cvtColor(ref, cv2.COLOR_BGR2RGB)
+
+    src = cv2.imread(args.source, cv2.IMREAD_ANYCOLOR)
+    src = cv2.cvtColor(src, cv2.COLOR_BGR2RGB)
 
     if args.flip:
         if len(src.shape) == 2:
@@ -65,9 +68,9 @@ def main():
                              invert_source=args.invert_source,
                              border=args.border)
 
-    iio.imwrite(args.output, aligned)
+    cv2.imwrite(args.output, cv2.cvtColor(aligned, cv2.COLOR_RGB2BGR))
     if args.trimmed != "":
-        iio.imwrite(args.trimmed, trimmed)
+        cv2.imwrite(args.trimmed, cv2.cvtColor(trimmed, cv2.COLOR_RGB2BGR))
 
 
 if __name__ == "__main__":
