@@ -20,7 +20,7 @@ def align(reference,
         if src_mono.dtype == np.uint8:
             src_mono = 255 - src_mono
         elif src_mono.dtype == np.uint16:
-            src_mono = 2 ** 16 - src_mono
+            src_mono = 2 ** 16 - 1 - src_mono
         elif src_mono.dtype == float:
             src_mono = 1.0 - src_mono
         else:
